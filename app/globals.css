@@ -9,19 +9,6 @@
     --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff;
-    --foreground: #171717;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-family); 
-}
-
 
 @layer utilities {
   @media (min-width: 550px) {
