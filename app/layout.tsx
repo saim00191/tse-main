@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import HeaderWrapper from "@/components/HeaderWrapper";
-import Footer from "@/components/Footer";
+import FooterWrapper from "@/components/FooterWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"  className="max-w-full bg-white">
+    <html lang="en"  className="max-w-full bg-red-900">
       <body
         className={`${geistSans.variable} ${poppins.className} ${geistMono.variable} antialiased bg-white text-black`}
       >
@@ -38,7 +38,7 @@ export default function RootLayout({
         <div className="w-full h-full bg-white">
           <div className="mx-auto max-w-[1440px] w-full">{children}</div>
         </div>
-        {/* <Footer/> */}
+        <FooterWrapper/>
       </body>
     </html>
   );

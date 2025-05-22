@@ -21,4 +21,9 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
+  @media (min-width: 400px) {
+    .flex-row-400 {
+      flex-direction: row;
+    }
+  }
 }
