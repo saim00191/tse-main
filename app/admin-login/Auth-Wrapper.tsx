@@ -21,6 +21,8 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
   }
 
   if (!isAuthenticated) {
+
+    
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-indigo-600 to-purple-600 px-4">
         <div className="bg-white p-8 rounded-xl shadow-lg text-center max-w-md w-full">
