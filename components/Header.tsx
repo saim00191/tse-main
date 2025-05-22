@@ -20,7 +20,7 @@ const Header = () => {
         </Link>
         <button
           onClick={handleLogout}
-          className="h-[40px] px-6 bg-gradient-to-r from-indigo-600 cursor-pointer to-purple-600 rounded-2xl"
+          className="h-[40px] px-6 text-white bg-gradient-to-r from-indigo-600 cursor-pointer to-purple-600 rounded-2xl"
         >
           Logout
         </button>
