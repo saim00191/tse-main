@@ -9,7 +9,7 @@
   --foreground: #171717;
 }
 
-/* Override system dark mode preferences */
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ffffff;
