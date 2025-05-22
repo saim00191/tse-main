@@ -1,11 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function AuthWrapper({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
+
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -25,7 +24,7 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-indigo-600 to-purple-600 px-4">
         <div className="bg-white p-8 rounded-xl shadow-lg text-center max-w-md w-full">
-          <h1 className="text-2xl font-bold text-indigo-700 mb-4">You're not logged in</h1>
+          <h1 className="text-2xl font-bold text-indigo-700 mb-4">You are not logged in</h1>
           <p className="text-gray-600 mb-6">Please log in to access the dashboard and manage your TSEs.</p>
           <Link
             href="/admin-login"

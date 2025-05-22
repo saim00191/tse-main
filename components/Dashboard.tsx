@@ -5,7 +5,7 @@ import {
 } from "@/utils/lib";
 import React from "react";
 import StorageSpeedometer from "./StorageDetails";
-import {Token , TSEDetail , TSEData , StorageMetrics , Stat} from "@/types/dashboard";
+import {Token  , TSEData , StorageMetrics , Stat} from "@/types/dashboard";
 
 
 const Dashboard_Overview: React.FC = async () => {
@@ -20,6 +20,7 @@ const Dashboard_Overview: React.FC = async () => {
         const data = await getTSEsForToken(item.creditClientId);
         return data?.length ? data : null;
       } catch (error) {
+        console.log(error)
         return null;
       }
     })
@@ -35,6 +36,7 @@ const Dashboard_Overview: React.FC = async () => {
           const detail = await getTSEsTokenData(tseSerialNumber);
           return { creditClientId, tseSerialNumber, detail };
         } catch (error) {
+          console.log(error)
           return null;
         }
       })
@@ -73,9 +75,7 @@ const Dashboard_Overview: React.FC = async () => {
     }
   );
 
-  // Calculate available storage
-  const availableStorage =
-    storageMetrics.totalCapacity - storageMetrics.totalUsed;
+  
 
   const stats: Stat[] = [
     {

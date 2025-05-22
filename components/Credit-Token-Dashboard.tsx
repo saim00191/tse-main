@@ -1,18 +1,18 @@
 import { getCreditTokens, getTSEsForToken } from "@/utils/lib";
 import TokenTable from "./Token-Table";
-import { Token } from "@/types/types";
+import { Token , TSE , EnrichedToken} from "@/types/types";
 
 const CreditTokenDashboard = async () => {
   const tokens: Token[] = await getCreditTokens();
 
-  const enrichedTokens = await Promise.all(
+  const enrichedTokens : EnrichedToken[] = await Promise.all(
     tokens.map(async (token) => {
-      let tses: any[] = [];
+      let tses: TSE[] = [];
       if (token.creditClientId) {
         tses = await getTSEsForToken(token.creditClientId);
       }
-      const tseSerialNumbers = tses.map((tse: any) => tse.tseSerialNumber);
-      const productTypes = tses.map((tse: any) => tse.productType);
+      const tseSerialNumbers = tses.map((tse) => tse.tseSerialNumber);
+      const productTypes = tses.map((tse) => tse.productType);
       return {
         ...token,
         tseCount: tses.length,

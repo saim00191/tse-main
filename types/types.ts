@@ -43,7 +43,6 @@ export interface MetricCardProps {
 export interface TSE {
   tseSerialNumber: string;
   productType: string;
-  // Add more fields if applicable
 }
 
 // Enriched Token for the table
