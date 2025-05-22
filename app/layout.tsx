@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-[#f8f8f8]">
+    <html lang="en"  className="light-mode">
       <body
         className={`${geistSans.variable} ${poppins.className} ${geistMono.variable} antialiased bg-white text-black`}
       >
