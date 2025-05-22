@@ -335,14 +335,17 @@ function StatCard({
   icon,
   color,
 }: StatCardProps) {
+
   return (
     <div
       className={`w-full bg-gradient-to-r ${color} text-white px-3 py-3 md:px-4 md:py-4 rounded-lg md:rounded-xl shadow-md md:shadow-lg border flex flex-col gap-1 md:gap-2 border-indigo-200`}
     >
+
       <div className="flex items-center justify-between">
         <h2 className="text-xs md:text-sm font-semibold tracking-wide uppercase text-white opacity-90">
           {title}
         </h2>
+        
         <div className="opacity-80">{icon}</div>
       </div>
       <h4 className="text-xl md:text-2xl font-bold">{value}</h4>
