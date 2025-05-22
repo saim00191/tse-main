@@ -85,7 +85,7 @@ const AdminLogin = () => {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-600 transition-all duration-300 pl-4 bg-gray-50 group-hover:border-gray-300"
+                    className="w-full px-4 py-3 border-2 text-purple-600 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-600 transition-all duration-300 pl-4 bg-gray-50 group-hover:border-gray-300"
                     placeholder="Enter your username"
                     required
                   />
@@ -102,7 +102,7 @@ const AdminLogin = () => {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-600 transition-all duration-300 pl-4 bg-gray-50 group-hover:border-gray-300"
+                    className="w-full px-4 py-3 border-2 text-purple-600 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-600 transition-all duration-300 pl-4 bg-gray-50 group-hover:border-gray-300"
                     placeholder="Enter your password"
                     required
                   />
