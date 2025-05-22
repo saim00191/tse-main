@@ -2,9 +2,8 @@ import AuthWrapper from "@/app/admin-login/Auth-Wrapper";
 import Home from "./MainPage";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: { id: string }; // ❗ plain object, not a Promise
 }
-
 async function getTSEDetails(tseSerialNumber: string) {
   const res = await fetch(
     `https://dev.web-tse.de/api/v1/manage/tse/${tseSerialNumber}`,

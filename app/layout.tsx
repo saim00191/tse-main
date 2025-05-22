@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"  className="bg-[#f8f8f8]">
+    <html lang="en"  className="max-w-full bg-white">
       <body
         className={`${geistSans.variable} ${poppins.className} ${geistMono.variable} antialiased bg-white text-black`}
       >
@@ -38,7 +38,7 @@ export default function RootLayout({
         <div className="w-full h-full bg-white">
           <div className="mx-auto max-w-[1440px] w-full">{children}</div>
         </div>
-        <Footer/>
+        {/* <Footer/> */}
       </body>
     </html>
   );
