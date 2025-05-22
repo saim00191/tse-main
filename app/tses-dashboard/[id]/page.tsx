@@ -2,15 +2,16 @@ import AuthWrapper from "@/app/admin-login/Auth-Wrapper";
 import Home from "./MainPage";
 
 interface Props {
-  params: { id: string }; // ❗ plain object, not a Promise
+  params: Promise<{ id: string }>;
 }
+
 async function getTSEDetails(tseSerialNumber: string) {
   const res = await fetch(
-    `https://dev.web-tse.de/api/v1/manage/tse/${tseSerialNumber}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/manage/tse/${tseSerialNumber}`,
     {
       headers: {
         Authorization: `Basic ${Buffer.from(
-          "76db02891845f79745218b7fee8ffb4a:a6995e1d6f46bec734cf41ff1f27eb65"
+          `${process.env.NEXT_PUBLIC_API_USERNAME}:${process.env.NEXT_PUBLIC_API_PASSWORD}`
         ).toString("base64")}`,
       },
       cache: "no-store",
@@ -23,7 +24,7 @@ async function getTSEDetails(tseSerialNumber: string) {
 
 const TSEPage = async ({ params }: Props) => {
   const { id } = await params;
-  const tseData = await getTSEDetails(id); // 👈 Fetch data using the slug
+  const tseData = await getTSEDetails(id); 
 
   return (
     <AuthWrapper>

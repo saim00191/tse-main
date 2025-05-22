@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"  className="max-w-full bg-red-900">
+    <html lang="en"  className="max-w-full bg-white">
       <body
         className={`${geistSans.variable} ${poppins.className} ${geistMono.variable} antialiased bg-white text-black`}
       >

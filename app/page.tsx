@@ -4,6 +4,7 @@ import AuthWrapper from "./admin-login/Auth-Wrapper";
 import React from "react";
 
 const Dashboard = () => {
+
   return (
     <AuthWrapper>
       <div className="w-full flex flex-col gap-4 bg-gradient-to-b from-white via-purple-50 to-indigo-100 min-h-screen p-4">

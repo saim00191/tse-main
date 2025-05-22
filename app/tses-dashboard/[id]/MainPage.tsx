@@ -23,6 +23,7 @@ import {
   FiPieChart,
 } from "react-icons/fi";
 import { DashboardData, MetricCardProps } from "@/types/types";
+import Link from "next/link";
 
 export default function Home({ data }: { data: DashboardData }) {
   return (
@@ -31,6 +32,9 @@ export default function Home({ data }: { data: DashboardData }) {
         <div className="max-w-7xl mx-auto w-full">
           {/* Header */}
           <div className="mb-6 md:mb-8">
+            <Link className="flex items-center mb-4 md:mb-6" href="/">
+                <p className="text-gray-500 font-medium text-[14px] hover:underline cursor-pointer">Back to Home</p>
+            </Link>
             <h1 className="text-2xl md:text-[26px] font-bold text-indigo-700">
               Certification Dashboard
             </h1>

@@ -1,17 +1,17 @@
 const username = process.env.NEXT_PUBLIC_API_USERNAME;
 const password = process.env.NEXT_PUBLIC_API_PASSWORD;
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-const base64Credentials = btoa(username + ':' + password);
+const base64Credentials = btoa(username + ":" + password);
 
 const baseHeaders = {
-  'Authorization': `Basic ${base64Credentials}`,
-  'Content-Type': 'application/json',
+  Authorization: `Basic ${base64Credentials}`,
+  "Content-Type": "application/json",
 };
 
 export async function getCreditTokens() {
   try {
     const response = await fetch(`${apiUrl}/api/v1/creditTokens`, {
-      method: 'GET',
+      method: "GET",
       headers: baseHeaders,
     });
 
@@ -21,22 +21,20 @@ export async function getCreditTokens() {
 
     const data = await response.json();
     return data;
-
   } catch (error) {
-    console.error('Error fetching credit tokens:', error);
+    console.error("Error fetching credit tokens:", error);
     throw error;
   }
 }
 
-getCreditTokens()
-
+getCreditTokens();
 
 export async function getTSEsForToken(tokenId: string) {
   try {
     const response = await fetch(
       `${apiUrl}/api/v1/creditTokens/${tokenId}/tses`,
       {
-        method: 'GET',
+        method: "GET",
         headers: baseHeaders,
       }
     );
@@ -53,20 +51,18 @@ export async function getTSEsForToken(tokenId: string) {
   }
 }
 
-
 export async function getTSEsTokenData(tokenId: string) {
   try {
-    const response = await fetch(
-      `${apiUrl}/api/v1/manage/tse/${tokenId}`,
-      {
-        method: 'GET',
-        headers: baseHeaders,
-      }
-    );
+    const response = await fetch(`${apiUrl}/api/v1/manage/tse/${tokenId}`, {
+      method: "GET",
+      headers: baseHeaders,
+    });
 
     // Check if the response is OK (status code 200-299)
     if (!response.ok) {
-      console.warn(`TSE fetch failed for token ${tokenId}, Status: ${response.status}, StatusText: ${response.statusText}`);
+      console.warn(
+        `TSE fetch failed for token ${tokenId}, Status: ${response.status}, StatusText: ${response.statusText}`
+      );
       return [];
     }
 

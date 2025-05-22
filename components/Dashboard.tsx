@@ -5,11 +5,11 @@ import {
 } from "@/utils/lib";
 import React from "react";
 import StorageSpeedometer from "./StorageDetails";
-import {Token  , TSEData , StorageMetrics , Stat} from "@/types/dashboard";
-
+import { Token, TSEData, StorageMetrics, Stat } from "@/types/dashboard";
 
 const Dashboard_Overview: React.FC = async () => {
-  const tokens: Token[] = await getCreditTokens();
+  // Limit to the first 10 credit tokens
+  const tokens: Token[] = (await getCreditTokens()).slice(0, 10);
   const activeTSEs = tokens.filter((token) => token.state === "active");
   const terminatedTSEs = tokens.filter((token) => token.state === "terminated");
 
@@ -20,7 +20,7 @@ const Dashboard_Overview: React.FC = async () => {
         const data = await getTSEsForToken(item.creditClientId);
         return data?.length ? data : null;
       } catch (error) {
-        console.log(error)
+        console.log(error);
         return null;
       }
     })
@@ -36,7 +36,7 @@ const Dashboard_Overview: React.FC = async () => {
           const detail = await getTSEsTokenData(tseSerialNumber);
           return { creditClientId, tseSerialNumber, detail };
         } catch (error) {
-          console.log(error)
+          console.log(error);
           return null;
         }
       })
@@ -75,8 +75,6 @@ const Dashboard_Overview: React.FC = async () => {
     }
   );
 
-  
-
   const stats: Stat[] = [
     {
       title: "Credit Tokens",
@@ -98,7 +96,6 @@ const Dashboard_Overview: React.FC = async () => {
       value: storageMetrics.totalCapacity,
       description: "Total Storage",
     },
-    
   ];
 
   return (
