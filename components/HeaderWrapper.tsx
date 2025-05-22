@@ -6,10 +6,15 @@ import Header from "@/components/Header";
 const HeaderWrapper = () => {
   const pathname = usePathname();
 
-  // Don't show header on /admin-login page
+  // List of routes or route prefixes where the header should be hidden
   const hideHeaderRoutes = ["/admin-login"];
+  const hideHeaderPrefixes = ["/tses-dashboard"];
 
-  if (hideHeaderRoutes.includes(pathname)) {
+  const shouldHideHeader =
+    hideHeaderRoutes.includes(pathname) ||
+    hideHeaderPrefixes.some(prefix => pathname.startsWith(prefix));
+
+  if (shouldHideHeader) {
     return null;
   }
 
