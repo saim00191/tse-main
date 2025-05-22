@@ -22,7 +22,9 @@ import {
   FiBarChart2,
   FiPieChart,
 } from "react-icons/fi";
-import {DashboardData , MetricCardProps} from "@/types/types";
+import { DashboardData, MetricCardProps } from "@/types/types";
+import Link from "next/link";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 
 export default function Home({ data }: { data: DashboardData }) {
   return (
@@ -30,14 +32,25 @@ export default function Home({ data }: { data: DashboardData }) {
       <main className="flex-1 p-6 bg-gradient-to-br from-purple-50 to-indigo-50">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
+            <Link href={"/"} className="flex items-center gap-2 group mb-3">
+              <FaLongArrowAltLeft
+                size={14}
+                className="text-gray-400 transition-transform duration-200 group-hover:-translate-x-1"
+              />
+              <p className="text-gray-400 text-[15px]">Back to Home</p>
+            </Link>
             <h1 className="text-[26px] font-bold text-indigo-700">
               Certification Dashboard
             </h1>
             <p className="text-indigo-600 mt-2 text-sm">
-              TSE ID: <span className="text-[14px] font-medium">{data.serialNumber}</span>
+              TSE ID:{" "}
+              <span className="text-[14px] font-medium">
+                {data.serialNumber}
+              </span>
             </p>
             <p className="text-indigo-600 mt-2 text-sm">
-              Certification ID: <span className="font-medium">{data.certificationId}</span>
+              Certification ID:{" "}
+              <span className="font-medium">{data.certificationId}</span>
             </p>
           </div>
 
@@ -138,9 +151,9 @@ export default function Home({ data }: { data: DashboardData }) {
                         boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
                       }}
                     />
-                    <Legend 
+                    <Legend
                       wrapperStyle={{
-                        paddingTop: "20px"
+                        paddingTop: "20px",
                       }}
                     />
                   </PieChart>
@@ -272,22 +285,16 @@ interface StatCardProps {
   color: string;
 }
 
-function StatCard({
-  title,
-  value,
-  total,
-  percentage,
-  color,
-}: StatCardProps) {
+function StatCard({ title, value, total, percentage, color }: StatCardProps) {
   return (
-    <div className={`h-32 w-full bg-gradient-to-r ${color} text-white px-4 py-3 rounded-xl shadow-lg border flex flex-col gap-3 border-indigo-200 transition-transform duration-200 hover:scale-[1.02]`}>
+    <div
+      className={`h-32 w-full bg-gradient-to-r ${color} text-white px-4 py-3 rounded-xl shadow-lg border flex flex-col gap-3 border-indigo-200 transition-transform duration-200 hover:scale-[1.02]`}
+    >
       <h2 className="text-sm font-semibold tracking-wide uppercase text-white opacity-90">
         {title}
       </h2>
       <h4 className="text-2xl font-bold">{value}</h4>
-      {total && (
-        <p className="text-sm text-indigo-100">{total}</p>
-      )}
+      {total && <p className="text-sm text-indigo-100">{total}</p>}
       {percentage !== undefined && (
         <div className="mt-1">
           <div className="w-full bg-indigo-400 bg-opacity-30 rounded-full h-1.5">
@@ -302,15 +309,18 @@ function StatCard({
   );
 }
 
-
-function MetricCard({ title, value, icon, color, bgColor = "bg-indigo-100" }: MetricCardProps) {
+function MetricCard({
+  title,
+  value,
+  icon,
+  color,
+  bgColor = "bg-indigo-100",
+}: MetricCardProps) {
   return (
     <div className="bg-white rounded-xl shadow-lg border border-indigo-100 p-6 transition-all hover:shadow-md">
       <div className="flex items-center mb-2">
         <div className={`${bgColor} p-2 rounded-lg mr-3 ${color}`}>{icon}</div>
-        <h3 className="text-lg font-medium text-indigo-700">
-          {title}
-        </h3>
+        <h3 className="text-lg font-medium text-indigo-700">{title}</h3>
       </div>
       <p className="text-3xl font-bold text-indigo-700">
         {value.toLocaleString()}
