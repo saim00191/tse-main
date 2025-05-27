@@ -133,37 +133,40 @@ const TokenTableMain = ({ tokens = [] }: { tokens: Token[] }) => {
     setError(null);
   };
 
- const getErrorMessage = (error: unknown): string => {
-  if (error instanceof Error) {
-    return error.message;
-  }
-
-  if (typeof error === "string") {
-    return error;
-  }
-
-  if (typeof error === "object" && error !== null) {
-    const maybeError = error as Record<string, unknown>;
-
-    const response = maybeError.response as Record<string, unknown> | undefined;
-    const data = response?.data as Record<string, unknown> | undefined;
-
-    if (typeof data?.error === "string") return data.error;
-    if (typeof data?.message === "string") return data.message;
-    if (typeof maybeError.message === "string") return maybeError.message;
-    if (typeof maybeError.error === "string") return maybeError.error;
-    if (typeof maybeError.details === "string") return maybeError.details;
-    if (typeof maybeError.description === "string") return maybeError.description;
-
-    try {
-      return JSON.stringify(error);
-    } catch {
-      return "An unknown error occurred";
+  const getErrorMessage = (error: unknown): string => {
+    if (error instanceof Error) {
+      return error.message;
     }
-  }
 
-  return "An unknown error occurred";
-};
+    if (typeof error === "string") {
+      return error;
+    }
+
+    if (typeof error === "object" && error !== null) {
+      const maybeError = error as Record<string, unknown>;
+
+      const response = maybeError.response as
+        | Record<string, unknown>
+        | undefined;
+      const data = response?.data as Record<string, unknown> | undefined;
+
+      if (typeof data?.error === "string") return data.error;
+      if (typeof data?.message === "string") return data.message;
+      if (typeof maybeError.message === "string") return maybeError.message;
+      if (typeof maybeError.error === "string") return maybeError.error;
+      if (typeof maybeError.details === "string") return maybeError.details;
+      if (typeof maybeError.description === "string")
+        return maybeError.description;
+
+      try {
+        return JSON.stringify(error);
+      } catch {
+        return "An unknown error occurred";
+      }
+    }
+
+    return "An unknown error occurred";
+  };
 
   const handleCreateTSE = async () => {
     if (confirmationInput.toLowerCase() !== "create tse") {
@@ -298,7 +301,10 @@ const TokenTableMain = ({ tokens = [] }: { tokens: Token[] }) => {
 
   return (
     <div className={`${poppins.className} w-full`}>
-      <FilterButtons filterState={filterState} setFilterState={setFilterState} />
+      <FilterButtons
+        filterState={filterState}
+        setFilterState={setFilterState}
+      />
       <DesktopTable
         tokens={filteredTokens}
         activeDropdown={activeDropdown}
