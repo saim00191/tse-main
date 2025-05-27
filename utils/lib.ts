@@ -13,6 +13,7 @@ export async function getCreditTokens() {
     const response = await fetch(`${apiUrl}/api/v1/creditTokens`, {
       method: "GET",
       headers: baseHeaders,
+      cache:"no-cache"
     });
 
     if (!response.ok) {
@@ -36,6 +37,7 @@ export async function getTSEsForToken(tokenId: string) {
       {
         method: "GET",
         headers: baseHeaders,
+         cache:"no-cache"
       }
     );
 
@@ -56,6 +58,7 @@ export async function getTSEsTokenData(tokenId: string) {
     const response = await fetch(`${apiUrl}/api/v1/manage/tse/${tokenId}`, {
       method: "GET",
       headers: baseHeaders,
+       cache:"no-cache"
     });
 
     // Check if the response is OK (status code 200-299)
