@@ -8,7 +8,12 @@ export async function POST(req: NextRequest) {
     if (!clientId || !clientSecret || !productType) {
       return NextResponse.json(
         { error: 'Missing required fields: clientId, clientSecret, and productType are required' },
-        { status: 400 }
+        {
+          status: 400, 
+          headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+          },
+         }
       );
     }
 
@@ -47,12 +52,21 @@ export async function POST(req: NextRequest) {
         else errorMessage = JSON.stringify(data, null, 2);
       }
       console.error('External API error response:', data);
-      return NextResponse.json({ error: errorMessage }, { status: response.status });
+      return NextResponse.json({ error: errorMessage }, {
+        status: response.status,
+        headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+          },
+      });
     }
 
     return NextResponse.json({
       creationId: data.creationId || data.id || `TSE-${Date.now()}`,
-    });
+    },{
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+        },
+      });
   } catch (err) {
     console.error('Server error in create-tse:', err);
     const errorMessage = err instanceof Error ? err.message : 'Unknown server error';

@@ -29,7 +29,11 @@ export async function POST(request: Request) {
       }
     );
 
-    return NextResponse.json(response.data);
+    return NextResponse.json(response.data, {
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+      }
+    });
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error('❌ Swissbit API Error:', error.response?.data || error.message);
@@ -41,6 +45,6 @@ export async function POST(request: Request) {
 
     // fallback for unknown non-Axios errors
     console.error('❌ Unexpected Error:', error);
-    return NextResponse.json({ error: 'Unexpected error occurred' }, { status: 500 });
+    return NextResponse.json({ error: 'Unexpected error occurred' }, { status: 500 , headers:{ 'Cache-Control': 'no-cache, no-store, must-revalidate',} });
   }
 }

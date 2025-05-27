@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
         },
         headers: {
           "Content-Type": "application/json",
+           "Cache-Control": "no-cache, no-store, must-revalidate"
         },
       }
     );
@@ -35,7 +36,7 @@ export async function POST(req: NextRequest) {
           status: "success",
           message: "Credit token terminated successfully",
         }),
-        { status: 200, headers: { "Content-Type": "application/json" } }
+        { status: 200, headers: { "Content-Type": "application/json" , "Cache-Control": "no-cache, no-store, must-revalidate"} }
       );
     } else {
       return new Response(
@@ -44,7 +45,7 @@ export async function POST(req: NextRequest) {
           message: "Failed to terminate token",
           data: response.data,
         }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
+        { status: 500, headers: { "Content-Type": "application/json" ,  "Cache-Control": "no-cache, no-store, must-revalidate"} }
       );
     }
   } catch (error) {
