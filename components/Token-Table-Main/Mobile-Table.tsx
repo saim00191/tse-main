@@ -2,7 +2,6 @@ import type React from "react";
 import { IoTrashBin } from "react-icons/io5";
 import { MdMoreVert, MdCancel, MdInfo, MdNumbers, MdVerified } from "react-icons/md";
 import Link from "next/link";
-import type { Token } from "@/types/types";
 import { getStatusBadge } from "@/utils/functions-Helper";
 import {MobileTableProps} from '@/types/Token-Table'
 

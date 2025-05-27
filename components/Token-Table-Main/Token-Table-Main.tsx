@@ -1,21 +1,8 @@
 "use client";
 import { useState } from "react";
 import type React from "react";
-import { IoTrashBin } from "react-icons/io5";
 import { Poppins } from "next/font/google";
-import {
-  MdCancel,
-  MdMoreVert,
-  MdInfo,
-  MdNumbers,
-  MdVerified,
-  MdClose,
-  MdArrowBack,
-  MdCheckCircle,
-} from "react-icons/md";
-import Link from "next/link";
 import type { Token } from "@/types/types";
-import { getStatusBadge } from "@/utils/functions-Helper";
 import { client } from "@/sanity/lib/client";
 import axios from "axios";
 import FilterButtons from "./Filter-Buttons";
@@ -146,30 +133,37 @@ const TokenTableMain = ({ tokens = [] }: { tokens: Token[] }) => {
     setError(null);
   };
 
-  const getErrorMessage = (error: unknown): string => {
-    if (error instanceof Error) {
-      return error.message;
+ const getErrorMessage = (error: unknown): string => {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  if (typeof error === "string") {
+    return error;
+  }
+
+  if (typeof error === "object" && error !== null) {
+    const maybeError = error as Record<string, unknown>;
+
+    const response = maybeError.response as Record<string, unknown> | undefined;
+    const data = response?.data as Record<string, unknown> | undefined;
+
+    if (typeof data?.error === "string") return data.error;
+    if (typeof data?.message === "string") return data.message;
+    if (typeof maybeError.message === "string") return maybeError.message;
+    if (typeof maybeError.error === "string") return maybeError.error;
+    if (typeof maybeError.details === "string") return maybeError.details;
+    if (typeof maybeError.description === "string") return maybeError.description;
+
+    try {
+      return JSON.stringify(error);
+    } catch {
+      return "An unknown error occurred";
     }
-    if (typeof error === "string") {
-      return error;
-    }
-    if (error && typeof error === "object") {
-      const errorObj = error as any;
-      if (errorObj.response?.data?.error) return errorObj.response.data.error;
-      if (errorObj.response?.data?.message)
-        return errorObj.response.data.message;
-      if (errorObj.message) return errorObj.message;
-      if (errorObj.error) return errorObj.error;
-      if (errorObj.details) return errorObj.details;
-      if (errorObj.description) return errorObj.description;
-      try {
-        return JSON.stringify(error);
-      } catch {
-        return "An unknown error occurred";
-      }
-    }
-    return "An unknown error occurred";
-  };
+  }
+
+  return "An unknown error occurred";
+};
 
   const handleCreateTSE = async () => {
     if (confirmationInput.toLowerCase() !== "create tse") {

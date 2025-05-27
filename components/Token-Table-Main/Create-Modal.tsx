@@ -181,7 +181,7 @@ const CreateModal: React.FC<CreateModalProps> = ({
                 </h3>
                 <p className="text-sm text-gray-600 mb-6">
                   This action will create a new TSE with the provided
-                  information. Please type "create tse" to confirm.
+                  information. Please type <b>create tse</b> to confirm.
                 </p>
               </div>
 
@@ -196,7 +196,7 @@ const CreateModal: React.FC<CreateModalProps> = ({
                   htmlFor="confirmationInput"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Type "create tse" to confirm
+                  Type <b>create tse</b>to confirm
                 </label>
                 <input
                   type="text"
@@ -209,7 +209,7 @@ const CreateModal: React.FC<CreateModalProps> = ({
                 />
                 {confirmationInput && !isCreateConfirmationValid && (
                   <p className="text-xs text-red-500 mt-1">
-                    Please type exactly "create tse" to proceed
+                    Please type exactly <b>create tse</b> to proceed
                   </p>
                 )}
                 {isCreateConfirmationValid && (

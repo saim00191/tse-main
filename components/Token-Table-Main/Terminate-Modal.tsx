@@ -61,7 +61,7 @@ const TerminateModal: React.FC<TerminateModalProps> = ({
                   <span className="font-mono">
                     {selectedToken?.creditClientId}
                   </span>
-                  . Please type "yes terminate" to confirm.
+                  . Please type <b>yes terminate</b> to confirm.
                 </p>
               </div>
 
@@ -76,7 +76,7 @@ const TerminateModal: React.FC<TerminateModalProps> = ({
                   htmlFor="terminateConfirmationInput"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Type "yes terminate" to confirm
+                  Type <b>yes terminate</b> to confirm
                 </label>
                 <input
                   type="text"
@@ -92,7 +92,7 @@ const TerminateModal: React.FC<TerminateModalProps> = ({
                 {terminateConfirmationInput &&
                   !isTerminateConfirmationValid && (
                     <p className="text-xs text-red-500 mt-1">
-                      Please type exactly "yes terminate" to proceed
+                      Please type exactly <b>yes terminate</b> to proceed
                     </p>
                   )}
                 {isTerminateConfirmationValid && (
