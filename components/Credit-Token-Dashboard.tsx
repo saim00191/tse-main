@@ -27,10 +27,10 @@ const CreditTokenDashboard = async () => {
   // Extract first 10 tokens
   const first10Tokens = enrichedTokens.slice(0, 10);
 
-  // Skip 11–20 and get tokens from 21 onward
-  const after20Tokens = enrichedTokens.slice(48);
 
-  // Combine first 10 and tokens after 20
+  const after20Tokens = enrichedTokens.slice(67);
+
+
   const displayedTokens = [...first10Tokens, ...after20Tokens];
 
   return (

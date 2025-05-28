@@ -8,8 +8,18 @@ import StorageSpeedometer from "./StorageDetails";
 import { Token, TSEData, StorageMetrics, Stat } from "@/types/dashboard";
 
 const Dashboard_Overview: React.FC = async () => {
-  // Limit to the first 10 credit tokens
-  const tokens: Token[] = (await getCreditTokens()).slice(0, 10);
+  // Fetch all tokens first
+  const allTokens: Token[] = await getCreditTokens();
+
+  // Extract first 10 tokens
+  const first10Tokens = allTokens.slice(0, 10);
+
+  // Extract tokens from 68th onward (skip tokens 11 to 67)
+  const after67Tokens = allTokens.slice(67);
+
+  // Combine first 10 and tokens after 67
+  const tokens: Token[] = [...first10Tokens, ...after67Tokens];
+
   const activeTSEs = tokens.filter((token) => token.state === "active");
   const terminatedTSEs = tokens.filter((token) => token.state === "terminated");
 
@@ -47,24 +57,18 @@ const Dashboard_Overview: React.FC = async () => {
 
   const storageMetrics: StorageMetrics = validTseDetails.reduce(
     (acc, { detail }) => {
-      // Check if storage capacity exists and is a number
       if (typeof detail.storageCapacity === "number") {
         acc.totalCapacity += detail.storageCapacity;
       }
-
-      // Check if storage used exists and is a number
       if (typeof detail.storageUsed === "number") {
         acc.totalUsed += detail.storageUsed;
       }
-
-      // Count devices that have storage data
       if (
         typeof detail.storageCapacity === "number" ||
         typeof detail.storageUsed === "number"
       ) {
         acc.devicesWithStorageData++;
       }
-
       return acc;
     },
     {
